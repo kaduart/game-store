@@ -1,4 +1,4 @@
-import { CN } from "@/app/helpers/Cn";
+import { CN } from "@/helpers/Cn";
 import Link from "next/link";
 import { NavbarListItem } from "../navbarListItem/NavbarListItem";
 

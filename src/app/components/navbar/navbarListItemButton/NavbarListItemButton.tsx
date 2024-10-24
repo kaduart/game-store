@@ -1,6 +1,6 @@
 "use client";
 
-import { CN } from "@/app/helpers/Cn";
+import { CN } from "@/helpers/Cn";
 import { NavbarListItem } from "../navbarListItem/NavbarListItem";
 
 type NavbarListItemButtonProps = React.ComponentProps<"button">;

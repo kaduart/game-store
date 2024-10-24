@@ -1,4 +1,4 @@
-import { CN } from "@/app/helpers/Cn";
+import { CN } from "@/helpers/Cn";
 
 type NavbarListProps = React.ComponentProps<"ul">;
 

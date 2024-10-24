@@ -3,7 +3,7 @@ import { GameIcon } from "@/app/assets/icons/icons/icons/GameIcon";
 import { PrizeIcon } from "@/app/assets/icons/icons/icons/PrizeIcon";
 import { RouteIcon } from "@/app/assets/icons/icons/icons/RouteIcon";
 import { UserIcon } from "@/app/assets/icons/icons/icons/UserIcon";
-import { CN } from "@/app/helpers/Cn";
+import { CN } from "@/helpers/Cn";
 import Image from "next/image";
 import myLogo from "../../assets/images/minha-logo.png";
 import { NavbarList } from "./navbarList/NavbarList";
