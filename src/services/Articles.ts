@@ -1,4 +1,4 @@
-import Article from "@/database/Articles";
+import Article from "@/libs/database/Articles";
 
 const HOME_LATEST_COUNT = 4;
 
@@ -6,7 +6,8 @@ const ArticleService = {
     getAllArticles: async (page = 1, limit = 10) => {
         const offset = (page - 1) * limit;
         const data = await Article.get({ offset, limit });
-        const totalPages = await Article.count({});
+        const total = await Article.count({});
+        const totalPages = Math.ceil(total / limit);
 
         return {
             data,
@@ -14,6 +15,7 @@ const ArticleService = {
                 page,
                 limit,
                 offset,
+                total,
                 totalPages
             }
         };
@@ -22,7 +24,8 @@ const ArticleService = {
         const offset = (page - 1) * limit + HOME_LATEST_COUNT;
         const orderBy = { publishedAt: "desc" };
         const data = await Article.get({ offset, orderBy, limit });
-        const totalPages = await Article.count({});
+        const total = await Article.count({});
+        const totalPages = Math.ceil((total - HOME_LATEST_COUNT) / limit);
 
         return {
             data,
@@ -30,6 +33,7 @@ const ArticleService = {
                 page,
                 limit,
                 offset,
+                total,
                 totalPages
             }
         };
@@ -39,8 +43,9 @@ const ArticleService = {
         const limit = HOME_LATEST_COUNT;
         const offset = 0;
         const orderBy = { publishedAt: "desc" };
-        const data = await Article.get({ offset, orderBy, limit });
-        const totalPages = await Article.count({});
+        const data = await Article.get({ orderBy, limit, offset });
+        const total = await Article.count({});
+        const totalPages = Math.ceil((total - HOME_LATEST_COUNT) / limit);
 
         return {
             data,
@@ -48,6 +53,7 @@ const ArticleService = {
                 page,
                 limit,
                 offset,
+                total,
                 totalPages
             }
         };

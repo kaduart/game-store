@@ -5,6 +5,9 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'www.emersonbroga.com',
+            },
+            {
+                hostname: 'github.com',
             }
         ]
     }
