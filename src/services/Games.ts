@@ -29,7 +29,6 @@ const GamesService = {
             return Math.random() > 0.5 ? 1 : -1;
         });
 
-        console.log('listaaa', sorted)
         const totalPages = Math.ceil(total / limit);
 
         return {
@@ -42,6 +41,11 @@ const GamesService = {
                 totalPages
             }
         };
+    },
+
+    getGameBySlug: async (slug: string) => {
+        return Games.getOne({ where: { slug } });
+
     }
 }
 

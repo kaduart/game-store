@@ -16,7 +16,6 @@ const Article = {
             take,
             skip,
         });
-        console.log("🚀 ----> ~ get all: ~ records:", records)
 
         return records;
     },
@@ -25,7 +24,6 @@ const Article = {
         const count = await prisma.article.count({
             where,
         });
-        console.log("🚀 ----> ~ count: ~ count:", count)
 
         return count;
 

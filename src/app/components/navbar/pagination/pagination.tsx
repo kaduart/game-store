@@ -14,8 +14,9 @@ export const Pagination = ({ currentPage, totalPages }: { currentPage: number; t
     const searchParams = useSearchParams();
 
     const pages = GeneratePages(currentPage, totalPages);
-    console.log("🚀 ----aaaaaaaaaaaaaaa> ~ Pagination ~ pages:", currentPage, totalPages);
+
     return (
+
         <ul className="inline-flex h-10 hoverflow-hidden rounded-md text-base border border-indigo-400/40">
 
             {

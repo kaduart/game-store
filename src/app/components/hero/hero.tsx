@@ -1,5 +1,6 @@
 import { getGameImage } from "@/helpers/games";
 import Image from "next/image";
+import Link from "next/link";
 import logoNitendo64 from '../../../../public/assets/images/Nintendo-64-Logo.png';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -7,7 +8,7 @@ const ScrollableGameList = ({ games }: { games: any[] }) => {
     return <>
         {
             games.map(game => (
-                <div key={game.id} className="h-32 w-auto">
+                <Link href={`/games/${game.slug}`} key={game.id} className="h-32 w-auto">
                     <Image
                         className="h-full w-full object-cover brightness-75 hover:brightness-100"
                         src={getGameImage(game.image)}
@@ -15,7 +16,7 @@ const ScrollableGameList = ({ games }: { games: any[] }) => {
                         width={372}
                         height={272}
                     />
-                </div>
+                </Link>
             ))
 
         }
@@ -24,11 +25,12 @@ const ScrollableGameList = ({ games }: { games: any[] }) => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Hero = ({ games }: { games: any[] }) => {
-    const style = {
-        '--duration': '180s',
-        ' --item-size': ' 128px',
-        '--item-count': '10',
-    } as React.CSSProperties;
+    //forma de fazer css aplicado no tsx
+    /*    const style = {
+           '--duration': '180s',
+           ' --item-size': ' 128px',
+           '--item-count': '10',
+       } as React.CSSProperties; */
 
     return (
         <>
@@ -42,7 +44,7 @@ export const Hero = ({ games }: { games: any[] }) => {
                     The Best Nitendo 64 fan website
                 </h2>
             </div>
-            <div className="ml-auto w-auto h-full border border-slate-700 p-2 rounded-lg" style={style}>
+            <div className="ml-auto w-auto h-full border border-slate-700 p-2 rounded-lg">
                 <div className="flex h-full overflow-hidden gap-2">
                     <div className="scroll-ttb flex flex-col gap-2">
                         <ScrollableGameList games={games.slice(0, 10)} />

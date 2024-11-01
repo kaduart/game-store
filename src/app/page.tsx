@@ -2,6 +2,7 @@
 import ArticleService from '@/services/Articles';
 import GamesService from '@/services/Games';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Hero } from './components/hero/hero';
 import { Pagination } from './components/navbar/pagination/pagination';
 import { PageWrapper } from './components/pageWrapper/pageWapper';
@@ -19,7 +20,7 @@ export default async function Home({ searchParams }: { searchParams?: { page?: s
 
     <PageWrapper>
 
-      <div className="container my-6 h-[42vh] flex-center justify-center ">
+      <div className="container mx-auto my-10 h-[42vh] flex-center justify-center ">
 
         <Hero games={heroGames.data} />
 
@@ -32,7 +33,7 @@ export default async function Home({ searchParams }: { searchParams?: { page?: s
         <div className="grid grid-cols-4 gap-4 h-[35vh]">
           {
             latestArticles.data.map((article) => (
-              <div key={article.title} className="flex-center relative overflow-hidden">
+              <Link href={`/articles/${article.slug}`} key={article.title} className="flex-center relative overflow-hidden">
                 <div className="w-full h-full">
                   <Image
                     src={`/assets/images/articles/${article.image}`}
@@ -46,7 +47,7 @@ export default async function Home({ searchParams }: { searchParams?: { page?: s
                   {article.id}
                   {article.title}
                 </p>
-              </div>
+              </Link>
             ))
           }
         </div>
@@ -77,7 +78,9 @@ export default async function Home({ searchParams }: { searchParams?: { page?: s
                       <h2 className="text-3xl mb-4 text-indigo-400/60">{article.title}</h2>
                       <p className="flex-grow text-slate-100">{article.publishedAt.toISOString()}</p>
                       <p className="flex-grow text-slate-100">{article.content}</p>
-                      <button className='bg-slate-700 hover:bg-indigo-400/40 rounded-lg px-4 inline max-w-max'>Read more</button>
+                      <Link href={`/articles/${article.slug}`} className='bg-slate-700 hover:bg-indigo-400/40 rounded-lg px-4 inline max-w-max'>
+                        Read more
+                      </Link>
                     </div>
                   </div>
                 ))

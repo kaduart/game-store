@@ -58,6 +58,11 @@ const ArticleService = {
             }
         };
     },
+
+    getArticlesBySlug: async (slug: string) => {
+        return Article.getOne({ where: { slug } });
+
+    }
 }
 
 export default ArticleService;

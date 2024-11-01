@@ -1,10 +1,15 @@
-import { PrismaClient } from "@prisma/client";
+import { Games, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 const MIN_OFFSET = 0;
 const MAX_RECORDS = 50;
 
-const Games = {
+const GamesDB = {
+    getOne: async ({ where }: { where: Pick<Games, 'id'> | Pick<Games, 'slug'> }) => {
+        const record = await prisma.games.findUnique({ where });
+        return record;
+    },
+
     get: async ({ where = {}, orderBy = {}, limit = 10, offset = 0 }) => {
 
         const take = Math.min(limit, MAX_RECORDS);
@@ -28,4 +33,4 @@ const Games = {
     }
 }
 
-export default Games;
+export default GamesDB;
