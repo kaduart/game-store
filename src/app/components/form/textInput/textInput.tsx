@@ -38,7 +38,7 @@ export default function TextInput({ label, name, type, placeholder, value, class
                 error ? (
                     <div className="my-2">
                         <small className="text-sm  text-red-500">
-                            Error
+                            {error}
                         </small>
                     </div>
 
