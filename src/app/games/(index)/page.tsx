@@ -1,8 +1,8 @@
 import { getGameImage } from "@/helpers/games";
 import GamesService from "@/services/Games";
 import Image from "next/image";
-import { Pagination } from "../components/navbar/pagination/pagination";
-import { PageWrapper } from "../components/pageWrapper/pageWapper";
+import { Pagination } from "../../components/navbar/pagination/pagination";
+import { PageWrapper } from "../../components/pageWrapper/pageWapper";
 
 export default async function Games({ searchParams }: { searchParams?: { page?: string, limit?: string } }) {
     const currentPage = Number(searchParams?.page) || 1;
@@ -11,8 +11,8 @@ export default async function Games({ searchParams }: { searchParams?: { page?: 
     const games = await GamesService.getAllGames(currentPage, limit);
     return (
         <PageWrapper>
-            <div className="container mx-auto my-6">
-                <h1 className="text-3xl my-6">Games</h1>
+            <div className="container mx-auto my-6 m-">
+                <h1 className="text-3xl text-slate-100 my-6">Games</h1>
                 <div className="grid grid-cols-4 gap-x-4 gap-y-12">
 
                     {

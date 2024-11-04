@@ -1,6 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-// opara instalar o prisma //"npx prisma init --datasource-provider sqlite"
+// para instalar o prisma //"npx prisma init --datasource-provider sqlite"
 // apos criar o model // tem que rodar o migration para criar/atualizar a tabela "npx prisma migrate dev"
 
 generator client {
@@ -55,5 +55,15 @@ model GameGenre {
   genreId     Int
 
   @@id([gameId, genreId])
+}
+
+model Users {
+  id          Int @id @default(autoincrement())
+  uuid        String @unique @default(uuid())
+  name        String 
+  email       String
+  password    String
+  createdAt   DateTime @default(now()) 
+  updatedAt   DateTime @updatedAt
 }
 

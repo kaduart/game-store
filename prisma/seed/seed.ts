@@ -101,7 +101,7 @@ async function seedArticles() {
     try {
         await Promise.all(
             articlesJson.map(async (article) => {
-                console.log('article', article)
+
                 await prisma.article.create({
                     data: {
                         slug: slugfy(article.title),

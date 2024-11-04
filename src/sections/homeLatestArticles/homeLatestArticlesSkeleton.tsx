@@ -3,12 +3,11 @@ import { getIntArray } from "@/helpers/math";
 export default async function getHomeLatestArticles() {
 
     const placeholders = getIntArray(0, 3);
-    console.log("🚀 ----> ~ getHomeLatestArticles ~ placeholders:", placeholders)
 
     return (
         <div className="container mx-auto my-10 animate-pulse">
             <h3 className='text-3xl w-3/12 text-slate-100 underline my-6 p-3'>
-                <div className="bg-slate-600 x-1/6 h-9 rounded-lg" />
+                <span className="bg-slate-600 x-1/6 h-9 rounded-lg" />
             </h3>
             <div className="grid grid-cols-4 gap-4 h-[35vh] my-6 p-3">
                 {

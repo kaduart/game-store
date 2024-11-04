@@ -54,12 +54,16 @@ export default async function Home({ searchParams }: { searchParams?: { page?: s
                       </div>
                     </div>
                     <div className="w-full flex flex-col gap-2 pl-4 m-4">
+
                       <h2 className="text-3xl mb-4 text-indigo-400/60">{article.title}</h2>
+
                       <p className="flex-grow text-slate-100">{article.publishedAt.toISOString()}</p>
                       <p className="flex-grow text-slate-100">{article.content}</p>
+
                       <Link href={`/articles/${article.slug}`} className='bg-slate-700 hover:bg-indigo-400/40 rounded-lg px-4 inline max-w-max'>
                         Read more
                       </Link>
+
                     </div>
                   </div>
                 ))

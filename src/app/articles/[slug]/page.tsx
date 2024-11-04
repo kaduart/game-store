@@ -5,7 +5,6 @@ import Image from "next/image";
 export default async function ArticleDetailsPage({ params }: { params: { slug: string } }) {
     const slug = params.slug;
     const article = await ArticleService.getArticlesBySlug(slug)
-    console.log("🚀 ----> ~ ArticleDetailsPage ~ article:", article)
 
     return (
         article &&
