@@ -27,20 +27,22 @@ This game system is ideal for anyone looking to explore a game catalog with the 
 
 
 ## Getting Started
-
 First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+git clone https://github.com/kaduart/game-store.git
+yarn install
+cp .env.example .env
+npx prisma migrate dev
+if question: ok to proced? (y) answer (y)
+npx prisma db seed
+if question: ok to proced? (y) answer (y)
+npm run dev | yarn dev
+
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![image](https://github.com/user-attachments/assets/6e89b5ee-6acc-4ea8-b56a-a0d907aa717a)
+
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
