@@ -12,7 +12,7 @@
         cria um helpers 'slugfy
 */
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 import articlesJson from '../../src/data/articles.json';
 import GamesJson from '../../src/data/games.json';
 import { slugfy } from '../../src/helpers/slugfy';
@@ -94,7 +94,6 @@ async function seedGames() {
 
 async function seedArticles() {
     //save guard
-
 
     try {
         await Promise.all(
