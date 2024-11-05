@@ -1,3 +1,4 @@
+import { getArticleImage, getArticleUrl } from "@/helpers/article";
 import ArticleService from "@/services/Articles";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,13 +12,14 @@ export default async function getHomeLatestArticles() {
             <h3 className='text-3xl text-slate-100 underline my-6 p-3'>
                 Latest Articles from today...
             </h3>
+
             <div className="grid grid-cols-4 gap-4 h-[35vh]">
                 {
                     latestArticles.data.map((article) => (
-                        <Link href={`/articles/${article.slug}`} key={article.title} className="flex-center relative overflow-hidden">
+                        <Link href={getArticleUrl(article.slug)} key={article.title} className="flex-center relative overflow-hidden">
                             <div className="w-full h-full">
                                 <Image
-                                    src={`/assets/images/articles/${article.image}`}
+                                    src={getArticleImage(article.image)}
                                     alt={article.title}
                                     width={600}
                                     height={400}

@@ -5,6 +5,7 @@ const MIN_OFFSET = 0;
 const MAX_RECORDS = 50;
 
 const GamesDB = {
+
     getOne: async ({ where }: { where: Pick<Games, 'id'> | Pick<Games, 'slug'> }) => {
         const record = await prisma.games.findUnique({ where });
         return record;
@@ -23,6 +24,7 @@ const GamesDB = {
         });
         return records;
     },
+
     count: async ({ where = {} }) => {
 
         const count = await prisma.games.count({

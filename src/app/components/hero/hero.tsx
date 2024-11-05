@@ -1,20 +1,25 @@
-import { getGameImage } from "@/helpers/games";
+import { getGameImage, getGameUrl } from "@/helpers/games";
+import { Games } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import logoNitendo64 from '../../../../public/assets/images/Nintendo-64-Logo.png';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ScrollableGameList = ({ games }: { games: any[] }) => {
+type ScrollLableGameListType = {
+    games: Games[];
+    width?: number;
+    height?: number;
+}
+const ScrollableGameList = ({ games, width = 175, height = 128 }: ScrollLableGameListType) => {
     return <>
         {
             games.map(game => (
-                <Link href={`/games/${game.slug}`} key={game.id} className="h-32 w-auto">
+                <Link href={getGameUrl(game.slug)} key={game.id} className="h-32 w-auto">
                     <Image
                         className="h-full w-full object-cover brightness-75 hover:brightness-100"
                         src={getGameImage(game.image)}
                         alt={game.title}
-                        width={372}
-                        height={272}
+                        width={width}
+                        height={height}
                     />
                 </Link>
             ))
@@ -23,14 +28,19 @@ const ScrollableGameList = ({ games }: { games: any[] }) => {
     </>
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Hero = ({ games }: { games: any[] }) => {
+
+type HeroType = {
+    games: Games[];
+}
+export const Hero = ({ games }: HeroType) => {
+    /*   
     //forma de fazer css aplicado no tsx
-    /*    const style = {
+     const style = {
            '--duration': '180s',
            ' --item-size': ' 128px',
            '--item-count': '10',
-       } as React.CSSProperties; */
+       } as React.CSSProperties; 
+    */
 
     return (
         <>

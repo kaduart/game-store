@@ -1,15 +1,18 @@
 import { createHash, verifyHash } from "@/helpers/hash";
 import UsersDB from "@/libs/database/Users";
+import { User } from "@prisma/client";
 
 const UsersService = {
-    signUp: async (data: any) => {
+    signUp: async (data: Pick<User, 'name' | 'email' | 'password'>) => {
 
         const passwordHash = await createHash(data.password);
+
+        if (!passwordHash) throw new Error('Unable to create password hash.')
 
         return UsersDB.create({ ...data, password: passwordHash });
     },
 
-    signIn: async (data: any) => {
+    signIn: async (data: Pick<User, 'email' | 'password'>) => {
         const record = await UsersDB.findByEmail(data.email);
         if (!record) return null;
 

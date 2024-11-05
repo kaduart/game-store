@@ -1,6 +1,10 @@
+import { PageWrapper } from "@/app/components";
+
 export default function Nintendo() {
 
     return (
-        <h1>Nintendo</h1>
+        <PageWrapper>
+            <h1>Nintendo</h1>
+        </PageWrapper>
     )
 }

@@ -5,6 +5,7 @@ const MIN_OFFSET = 0;
 const MAX_RECORDS = 50;
 
 const ArticleDB = {
+
     getOne: async ({ where }: { where: Pick<Article, 'id'> | Pick<Article, 'slug'> }) => {
         const record = await prisma.article.findUnique({ where });
         return record;

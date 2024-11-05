@@ -1,11 +1,18 @@
 import { getSession } from "@/helpers/session";
+import type { User } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { PageWrapper } from "../components";
 
 export default async function User() {
-    const user = await getSession();
+    const userDTO = await getSession() as User | null;
 
-    if (!user) redirect("/auth/sign-in");
+    if (userDTO) {
+        // ... rest of the code
+    } else {
+        redirect("/auth/sign-in");
+    }
+
+    if (!userDTO) redirect("/auth/sign-in");
 
     return (
 
@@ -15,8 +22,8 @@ export default async function User() {
                     <h1 className="">Account</h1>
 
                     <div className="flex flex-col my-6">
-                        {user.payload.name ? <p className="my-2 p-2"> {String(user.payload.name)}</p> : null}
-                        {user.payload.email ? <p className="my-2 p-2"> {String(user.payload.email)}</p> : null}
+                        {userDTO.payload.name ? <p className="my-2 p-2"> {String(userDTO.payload.name)}</p> : null}
+                        {userDTO.payload.email ? <p className="my-2 p-2"> {String(userDTO.payload.email)}</p> : null}
 
                     </div>
                 </div>

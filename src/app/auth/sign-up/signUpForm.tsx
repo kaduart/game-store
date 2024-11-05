@@ -21,7 +21,7 @@ export default function SignUpForm() {
     return (
         <form className="mt-8" action={formAction}>
 
-            <TextInput type="text" name="name" label="name" placeholder="Name" error={state.errors.name} />
+            <TextInput type="text" name="name" label="Name" placeholder="Name" error={state.errors.name} />
             <TextInput type="email" name="email" label="Email" placeholder="Email" error={state.errors.email} />
             <TextInput type="password" name="password" label="Password" placeholder="Password" error={state.errors.password} />
             <TextInput type="password" name="passwordConfirmation" label=" Password Confirmation" placeholder="Password Confirmation" error={state.errors.passwordConfirmation} />

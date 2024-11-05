@@ -1,14 +1,9 @@
 import { handleSingOutForm } from "@/app/auth/sign-out/action";
 import { CN } from "@/helpers/Cn";
 import Image from "next/image";
-import { ExitIcon } from "../../../../public/assets/icons/ExitIcon";
-import { GameIcon } from "../../../../public/assets/icons/GameIcon";
-import { HomeIcon } from "../../../../public/assets/icons/Icons";
-import { PrizeIcon } from "../../../../public/assets/icons/PrizeIcon";
-import { RouteIcon } from "../../../../public/assets/icons/RouteIcon";
-import { UserIcon } from "../../../../public/assets/icons/UserIcon";
 import myLogo from "../../../../public/assets/images/minha-logo.png";
-import FormButton from "../form/FormButton/formButtom";
+import FormButton from "../form/formButton/formButtom";
+import { ExitIcon, GameIcon, HomeIcon, PrizeIcon, RouteIcon, UserIcon } from "../icons/Icons";
 import { NavbarList } from "./navbarList/NavbarList";
 import { NavbarListItem } from "./navbarListItem/NavbarListItem";
 import { NavbarListItemButton } from "./navbarListItemButton/NavbarListItemButton";
