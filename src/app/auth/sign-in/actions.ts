@@ -1,42 +1,32 @@
 "use server";
 
+import { encrypt } from "@/helpers/jwt";
+import { createSession } from "@/helpers/session";
 import { getZodErrors } from "@/helpers/zodValidate";
 import UsersService from "@/services/Users";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
 
-export type signUpError = {
-    name?: string;
+export type signInError = {
     email?: string;
     password?: string;
-    passwordConfirmation?: string;
 };
 
-export type SignUpState = {
+export type SignInState = {
     isValid?: boolean;
-    errors: signUpError
+    errors: signInError
 
 }
 
-const validateSigUnpForm = (formdata: FormData) => {
+const validateSignInForm = (formdata: FormData) => {
     //implementacao de validacao de form com ZOD 
 
-    const checkPasswords = (data: any) => {
-        return data.password === data.passwordconfirmation;
-    }
-    const checkPasswordsErrors = {
-        message: 'Password confirmation does`t match.',
-        path: ['passwordConfirmation']
-    };
-
     const userSchema = z.object({
-        name: z.string().min(2, 'Name is invalid').max(50),
         email: z.string().email('E-mail invalid.'),
         password: z.string().min(8, 'Password must have at least 8 chars.').max(50),
-        passwordConfirmation: z.string().min(8, 'PasswordConfirmation must have at least 8 chars.').max(50)
-    })
-        .refine(checkPasswords, checkPasswordsErrors);
+    });
 
     try {
 
@@ -49,7 +39,7 @@ const validateSigUnpForm = (formdata: FormData) => {
         return { isValid: false, errors: zodErros || {} };
 
         // implementacao de validacao sem framework
-        /*  const errors: signUpError = {
+        /*  const errors: signInError = {
              name: undefined,
              email: undefined,
              password: undefined,
@@ -97,22 +87,31 @@ const validateSigUnpForm = (formdata: FormData) => {
     };
 };
 
-export const handleSignUpForm = async (prevState: any, formData: FormData) => {
+export const handleSignInForm = async (prevState: any, formData: FormData) => {
 
-    const validation = validateSigUnpForm(formData);
+    const validation = validateSignInForm(formData);
 
     if (!validation.isValid) {
         return { ...prevState, ...validation };
     }
 
     const data = {
-        name: String(formData.get("name")),
         email: String(formData.get("email")),
         password: String(formData.get("password")),
     }
 
-    await UsersService.signUp(data);
+    const user = await UsersService.signIn(data);
+    if (!user) return { isValid: false, error: {} };
 
-    redirect("/");
+    const payload = {
+        uuid: user.uuid,
+        name: user.name,
+        email: user.email,
+    }
 
+    const jwt = await encrypt({ payload });
+    createSession(jwt);
+    revalidatePath('/');
+
+    return redirect('/');
 }

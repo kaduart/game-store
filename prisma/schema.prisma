@@ -57,11 +57,11 @@ model GameGenre {
   @@id([gameId, genreId])
 }
 
-model Users {
+model User {
   id          Int @id @default(autoincrement())
   uuid        String @unique @default(uuid())
   name        String 
-  email       String
+  email       String @unique 
   password    String
   createdAt   DateTime @default(now()) 
   updatedAt   DateTime @updatedAt

@@ -10,9 +10,11 @@ import { NavbarList } from "./navbarList/NavbarList";
 import { NavbarListItemButton } from "./navbarListItemButton/NavbarListItemButton";
 import { NavbarListItemLink } from "./navbarListItemLink/NavbarListItemLink";
 
-type NavbarProps = React.ComponentProps<"nav">;
+type NavbarProps = React.ComponentProps<"nav"> & {
+    user?: any;
+};
 
-export default function Navbar({ className, ...props }: NavbarProps) {
+export default function Navbar({ className, user, ...props }: NavbarProps) {
 
     return (
         <nav className={CN(
@@ -54,10 +56,19 @@ export default function Navbar({ className, ...props }: NavbarProps) {
                 </NavbarListItemButton>
             </NavbarList>
             <NavbarList >
-                <NavbarListItemLink href="/user">
-                    <UserIcon className="group-hover:text-indigo-500 w-4 h-4" />
-                    User
-                </NavbarListItemLink>
+
+                {
+                    user
+                        ? (<NavbarListItemLink href="/user">
+                            <UserIcon className="w-4 h-4" />{user.payload.name}
+                        </NavbarListItemLink>
+                        )
+                        : <NavbarListItemLink href="/auth/sign-in">
+                            <UserIcon className="w-4 h-4" />Login
+
+                        </NavbarListItemLink>
+                }
+
             </NavbarList>
         </nav >
     )

@@ -86,8 +86,6 @@ async function seedGames() {
                     }
                 }
             });
-            console.log("🚀 ----> ~ CREATED ~ game:", game.id, game.title)
-
         })
 
     );

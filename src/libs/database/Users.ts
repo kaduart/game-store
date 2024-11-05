@@ -4,7 +4,10 @@ const prisma = new PrismaClient();
 
 const UsersDB = {
     create: async (data: any) => {
-        return prisma.users.create({ data });
+        return prisma.user.create({ data });
+    },
+    findByEmail: async (email: string) => {
+        return await prisma.user.findUnique({ where: { email } });
     }
 }
 
