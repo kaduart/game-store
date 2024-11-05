@@ -1,12 +1,16 @@
-import { HomeIcon } from "@/app/assets/icons/Icons";
-import { GameIcon } from "@/app/assets/icons/icons/icons/GameIcon";
-import { PrizeIcon } from "@/app/assets/icons/icons/icons/PrizeIcon";
-import { RouteIcon } from "@/app/assets/icons/icons/icons/RouteIcon";
-import { UserIcon } from "@/app/assets/icons/icons/icons/UserIcon";
+import { handleSingOutForm } from "@/app/auth/sign-out/action";
 import { CN } from "@/helpers/Cn";
 import Image from "next/image";
-import myLogo from "../../assets/images/minha-logo.png";
+import { ExitIcon } from "../../../../public/assets/icons/ExitIcon";
+import { GameIcon } from "../../../../public/assets/icons/GameIcon";
+import { HomeIcon } from "../../../../public/assets/icons/Icons";
+import { PrizeIcon } from "../../../../public/assets/icons/PrizeIcon";
+import { RouteIcon } from "../../../../public/assets/icons/RouteIcon";
+import { UserIcon } from "../../../../public/assets/icons/UserIcon";
+import myLogo from "../../../../public/assets/images/minha-logo.png";
+import FormButton from "../form/FormButton/formButtom";
 import { NavbarList } from "./navbarList/NavbarList";
+import { NavbarListItem } from "./navbarListItem/NavbarListItem";
 import { NavbarListItemButton } from "./navbarListItemButton/NavbarListItemButton";
 import { NavbarListItemLink } from "./navbarListItemLink/NavbarListItemLink";
 
@@ -55,21 +59,29 @@ export default function Navbar({ className, user, ...props }: NavbarProps) {
                     teste button
                 </NavbarListItemButton>
             </NavbarList>
-            <NavbarList >
 
-                {
-                    user
-                        ? (<NavbarListItemLink href="/user">
+            {
+                user ? (
+                    <NavbarList >
+                        <NavbarListItemLink href="/user">
                             <UserIcon className="w-4 h-4" />{user.payload.name}
                         </NavbarListItemLink>
-                        )
-                        : <NavbarListItemLink href="/auth/sign-in">
-                            <UserIcon className="w-4 h-4" />Login
+                        <NavbarListItem>
+                            <ExitIcon className="w-4 h-4" />
+                            <FormButton action={handleSingOutForm} > Log out</FormButton>
+                        </NavbarListItem>
+                    </NavbarList>
+                )
+                    : (
+                        <NavbarList >
+                            <NavbarListItemLink href="/auth/sign-in">
+                                <UserIcon className="w-4 h-4" />Login
 
-                        </NavbarListItemLink>
-                }
+                            </NavbarListItemLink>
+                        </NavbarList>
+                    )
+            }
 
-            </NavbarList>
         </nav >
     )
 }

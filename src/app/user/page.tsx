@@ -4,7 +4,6 @@ import { PageWrapper } from "../components";
 
 export default async function User() {
     const user = await getSession();
-    console.log("🚀 ssssssssss---zzzzzzzzzzzzzzzz-> ~ User ~ user:", user)
 
     if (!user) redirect("/auth/sign-in");
 

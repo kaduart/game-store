@@ -1,5 +1,5 @@
-import { GameIcon } from "./icons/icons/GameIcon";
-import { HomeIcon } from "./icons/icons/HomeIcon";
+import { GameIcon } from "./GameIcon";
+import { HomeIcon } from "./HomeIcon";
 
 export { GameIcon, HomeIcon };
 
