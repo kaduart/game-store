@@ -12,7 +12,7 @@ export const createSession = (payload: string) => {
 
 export const getSession = async () => {
     const session = cookies().get(SESSION_NAME)?.value;
-    console.log("🚀 ----> ~ getSession ~ session:", session)
+
     if (!session) return null;
 
     return decrypt(session);

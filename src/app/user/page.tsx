@@ -4,7 +4,9 @@ import { redirect } from "next/navigation";
 import { PageWrapper } from "../components";
 
 export default async function User() {
-    const userDTO = await getSession() as User | null;
+    const getSessionUser = await getSession();
+    if (!getSessionUser) return null;
+    const userDTO = await getSessionUser.payload as User;
 
     if (userDTO) {
         // ... rest of the code
@@ -22,8 +24,8 @@ export default async function User() {
                     <h1 className="">Account</h1>
 
                     <div className="flex flex-col my-6">
-                        {userDTO.payload.name ? <p className="my-2 p-2"> {String(userDTO.payload.name)}</p> : null}
-                        {userDTO.payload.email ? <p className="my-2 p-2"> {String(userDTO.payload.email)}</p> : null}
+                        {userDTO?.name ? <p className="my-2 p-2"> {String(userDTO?.name)}</p> : null}
+                        {userDTO?.email ? <p className="my-2 p-2"> {String(userDTO?.email)}</p> : null}
 
                     </div>
                 </div>

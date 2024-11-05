@@ -110,6 +110,7 @@ export const handleSignInForm = async (prevState: any, formData: FormData) => {
     }
 
     const jwt = await encrypt({ payload });
+
     createSession(jwt);
     revalidatePath('/');
 
