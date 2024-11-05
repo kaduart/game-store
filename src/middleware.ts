@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { updateSession } from "./helpers/session";
 
-export default async function middleware(request: NextRequest) {
+export default async function middleware() {
     const updatedSession = await updateSession();
 
     if (!updatedSession) return null;

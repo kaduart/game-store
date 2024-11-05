@@ -13,7 +13,7 @@ export default function SignInPage() {
                     <SignInForm />
 
                     <div className="mt-8">
-                        <Link href={"/auth/sign-up"} >Don't have an account? Sign up</Link>
+                        <Link href={"/auth/sign-up"}>${`Don't have an account? Sign up`}</Link>
                     </div>
                 </div>
 

@@ -9,8 +9,10 @@ export const createHash = async (password: string) => {
 
         return hash;
     } catch (error) {
+        console.log(error);
         return null;
     }
+
 }
 
 export const verifyHash = async (password: string, hash: string) => {
@@ -19,6 +21,7 @@ export const verifyHash = async (password: string, hash: string) => {
 
         return isValid;
     } catch (error) {
+        console.log(error);
         return false;
     }
 }
