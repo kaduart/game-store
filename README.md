@@ -29,14 +29,18 @@ This game system is ideal for anyone looking to explore a game catalog with the 
 ## Getting Started
 First, run the development server:
 
-git clone https://github.com/kaduart/game-store.git
-yarn install
-cp .env.example .env
-npx prisma migrate dev
-if question: ok to proced? (y) answer (y)
-npx prisma db seed
-if question: ok to proced? (y) answer (y)
-npm run dev | yarn dev
+- git clone https://github.com/kaduart/game-store.git
+- yarn install
+- cp .env.example .env
+  - add no .env:
+    -  NODE_ENV=development
+    -  DATABASE_URL="file:./db/dev.db"
+    - JWT_SECRET="dsgf4fd56ghgh4fg654h65fdg4h6f54ds5"
+- npx prisma migrate dev
+- if question: ok to proced? (y) answer (y)
+- npx prisma db seed
+- if question: ok to proced? (y) answer (y)
+- npm run dev | yarn dev
 
 
 
