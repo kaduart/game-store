@@ -10,7 +10,8 @@ const nextConfig = {
                 hostname: 'github.com',
             }
         ]
-    }
+    },
+    "output": "standalone"
 };
 
 export default nextConfig;
